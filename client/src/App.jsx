@@ -45,9 +45,10 @@ function useAnimalSearch() {
   }, []);
 
   const search = async (q) => {
-    const response = await fetch(
-      "http://localhost:8080?" + new URLSearchParams({ q })
-    );
+    const BASE_URL = import.meta.env.VITE_API_URL;
+    // const response = await fetch(BASE_URL + new URLSearchParams({ q }));
+    const response = await fetch(`${BASE_URL}?${new URLSearchParams({ q })}`);
+
     const data = await response.json();
     setAnimals(data);
 
