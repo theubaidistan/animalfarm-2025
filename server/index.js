@@ -1,9 +1,12 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 // Initialize the express app
 const app = express();
 app.use(cors());
 app.use(express.json());
+// Serve static files from 'public'
+app.use(express.static(path.join(process.cwd(), "public")));
 
 // Make some animals
 import Chance from "chance";
@@ -28,6 +31,7 @@ app.get("", (req, res) => {
 
   res.send(results);
 });
+
 const PORT = process.env.PORT || 8080;
 
 const BASE_URL = process.env.VERCEL_API_URL
